@@ -1,0 +1,32 @@
+VERSION 4
+/simple-bot/simple-bot.dm
+0	ROOT simple-bot simple-bot 1
+1	0	OPERATOR _firstload _firstload.soar 2
+2	0	FOLDER all all 3
+3	2	OPERATOR wait wait.soar 4
+4	0	FOLDER elaborations elaborations 5
+5	4	FOPERATOR _all _all.soar 6
+6	4	FOPERATOR monitor monitor.soar 7
+7	4	FOPERATOR output output.soar 8
+8	4	FOPERATOR printing printing.soar 29
+9	4	FOPERATOR shields shields.soar 9
+10	4	FOPERATOR top-state top-state.soar 10
+11	0	HLOPERATOR attack attack.soar attack 61 11
+12	11	OPERATOR fire-missile fire-missile.soar 12
+13	11	OPERATOR move move.soar 13
+14	11	OPERATOR slide slide.soar 14
+15	11	OPERATOR turn turn.soar 15
+16	0	HLOPERATOR chase chase.soar chase 62 16
+17	16	FOPERATOR elaborations elaborations.soar 17
+18	16	OPERATOR move move.soar 18
+19	16	OPERATOR radar radar.soar 19
+20	16	OPERATOR turn turn.soar 20
+21	0	HLOPERATOR retreat retreat.soar retreat 63 21
+22	21	FOPERATOR elaborations elaborations.soar 22
+23	21	OPERATOR move move.soar 23
+24	21	OPERATOR wait wait.soar 24
+25	0	HLOPERATOR wander wander.soar wander 6 25
+26	25	FOPERATOR elaborations elaborations.soar 26
+27	25	OPERATOR move move.soar 27
+28	25	OPERATOR turn turn.soar 28
+END

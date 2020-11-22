@@ -1,0 +1,119 @@
+sp {elaborate*print*moved*true
+   (state <s> ^name { <> tanksoar}
+             ^io.output-link <ol>)
+   (<ol> ^move <dir>)
+-->
+   (<s> ^print-move 1)
+}
+
+sp {elaborate*print*moved*false
+   (state <s> ^name { <> tanksoar} 
+              ^io.output-link <ol>)
+  -(<ol> ^move <dir>)
+-->
+   (<s> ^print-move 0)
+}
+
+sp {elaborate*print*radar*on*true
+   (state <s> ^name { <> tanksoar} 
+              ^io.input-link <il>)
+   (<il> ^radar-status on )
+-->
+   (<s> ^print-radar 1)
+}
+   
+sp {elaborate*print*radar*on*false
+   (state <s> ^name { <> tanksoar} 
+              ^io.input-link <il>)
+  -(<il> ^radar-status on )
+-->
+   (<s> ^print-radar 0)
+}
+   
+sp {elaborate*print*shield*on*true
+   (state <s> ^name { <> tanksoar}
+              ^io.input-link <il>)
+   (<il> ^shield-status on )
+-->
+   (<s> ^print-shield 1)
+}
+
+sp {elaborate*print*shield*on*false
+   (state <s> ^name { <> tanksoar}
+              ^io.input-link <il>)
+  -(<il> ^shield-status on )
+-->
+   (<s> ^print-shield 0)
+}
+
+sp {elaborate*print*energy*level*true
+   (state <s> ^name { <> tanksoar}
+              ^io.input-link <il>)
+   (<il> ^energy >= 750 )
+-->
+   (<s> ^print-energy 1)
+}
+
+sp {elaborate*print*energy*level*false
+   (state <s> ^name { <> tanksoar}
+              ^io.input-link <il>)
+  -(<il> ^energy >= 750 )
+-->
+   (<s> ^print-energy 0)
+}
+
+sp {elaborate*print*current*substate
+   (state <s> ^name { <> tanksoar <name> })
+-->
+   (<s> ^print-state <name>)
+}
+
+sp {elaborate*print*resurrected*true
+   (state <s> ^name { <> tanksoar}
+              ^io.input-link <il>)
+   (<il> ^resurrected yes )
+-->
+   (<s> ^print-resurrected 1)
+}
+
+sp {elaborate*print*resurrected*false
+   (state <s> ^name { <> tanksoar}
+              ^io.input-link <il>)
+  -(<il> ^resurrected yes )
+-->
+   (<s> ^print-resurrected 0)
+}
+
+sp {elaborate*print*all
+   (state <s> ^name { <> tanksoar}
+              ^print-move <pm>
+              ^print-radar <pra>
+              ^print-shield <psh>
+              ^print-energy <pe>
+              ^print-resurrected <pre>
+              ^print-state <pst>
+              ^io.input-link.clock <clock>)
+-->
+   (write |LOG IDENTIFIER-> Time: | <clock> | Moved: | <pm> | Radar: | <pra> | Shield: | <psh> | Energy: | <pe> | State: | <pst> | Resurrected: | <pre>)
+}
+
+#sp {elaborate*print*only*move
+#   (state <s> ^print-move <pm>
+#              ^print-radar <pra>
+#              ^print-shield <psh>
+#              ^print-energy <pe>
+#              ^print-state <pst>
+#              ^print-resurrected <pre>)
+#-->
+#   (write |LOG IDENTIFIER-> Moved: | <pm> | Radar: | <pra> | Shield: | <psh> | Energy: | <pe> | State: | <pst> | Resurrected: | <pre>)
+#}
+
+#sp {elaborate*print*all*test
+#   (state <s> ^print-radar <pra>
+#              ^print-shield <psh>
+#              ^print-energy <pe>
+#              ^print-state <pst>
+#              ^print-resurrected <pre>)
+#-->
+#   (write |LOG IDENTIFIER-> Moved: ?? Radar: | <pra> | Shield: | <psh> | Energy: | <pe> | State: | <pst> | Resurrected: | <pre>)
+#}
